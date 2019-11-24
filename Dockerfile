@@ -189,17 +189,17 @@ RUN set -ex && \
 COPY --from=builder /src/build/release/bin /usr/local/bin/
 
 # Create monero user
-RUN adduser --system --group --disabled-password monero && \
-	mkdir -p /wallet /home/monero/.bitmonero && \
-	chown -R monero:monero /home/monero/.bitmonero && \
-	chown -R monero:monero /wallet
+RUN adduser --system --group --disabled-password xmv && \
+	mkdir -p /wallet /home/xmv/.xmv && \
+	chown -R xmv:xmv /home/xmv/.xmv && \
+	chown -R xmv:xmv /wallet
 
 # Contains the blockchain
-VOLUME /home/monero/.bitmonero
+VOLUME /root/.xmv
 
 # Generate your wallet via accessing the container and run:
 # cd /wallet
-# monero-wallet-cli
+# xmv-wallet-cli
 VOLUME /wallet
 
 EXPOSE 19280
@@ -209,8 +209,5 @@ EXPOSE 29281
 EXPOSE 39280
 EXPOSE 39281
 
-# switch to user monero
-USER monero
-
-ENTRYPOINT ["monerod", "--p2p-bind-ip=0.0.0.0", "--p2p-bind-port=18080", "--rpc-bind-ip=0.0.0.0", "--rpc-bind-port=18081", "--non-interactive", "--confirm-external-bind"]
+ENTRYPOINT ["xmvd", "--p2p-bind-ip=0.0.0.0", "--p2p-bind-port=19949", "--rpc-bind-ip=0.0.0.0", "--rpc-bind-port=19281", "--non-interactive", "--confirm-external-bind"]
 
