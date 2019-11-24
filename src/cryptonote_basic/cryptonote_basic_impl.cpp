@@ -100,6 +100,11 @@ namespace cryptonote {
       median_weight = full_reward_zone;
     }
 
+    if((version == 12)&&(already_generated_coins < 5000000000000000000)){
+      reward = 5000000000000000000;
+      return true;
+    }
+
     if (current_block_weight <= median_weight) {
       reward = base_reward;
       return true;

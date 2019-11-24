@@ -1163,7 +1163,7 @@ namespace cryptonote
   //-----------------------------------------------------------------------------------------------
   size_t core::get_block_sync_size(uint64_t height) const
   {
-    static const uint64_t quick_height = m_nettype == TESTNET ? 801219 : m_nettype == MAINNET ? 1220516 : 0;
+    static const uint64_t quick_height = m_nettype == TESTNET ? 0 : m_nettype == MAINNET ? 0 : 0;
     if (block_sync_size > 0)
       return block_sync_size;
     if (height >= quick_height)
@@ -1881,6 +1881,7 @@ namespace cryptonote
       MDEBUG("Not checking block rate, offline or syncing");
       return true;
     }
+    return true;
 
     static constexpr double threshold = 1. / (864000 / DIFFICULTY_TARGET_V2); // one false positive every 10 days
 
