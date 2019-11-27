@@ -6,8 +6,11 @@ Monerov is based on [Monero](README_original.md)
 ## Resources
 
 - Webpage: [monerov.online](http://monerov.online)
-- Explorer: [explorer.monerov.online](https://explorer.monerov.online/)
-- GitHub: [github.com/xmvdev](https://github.com/xmrdev)
+- Explorer Mainnet: [explorer.monerov.online](https://explorer.monerov.online/)
+- Explorer Testnet: [explorer.test.monerov.online](https://explorer.test.monerov.online/)
+- Official Pool Mainnet: [pool.monerov.online](https://pool.monerov.online/)
+- Official Pool Testnet: [pool.test.monerov.online](https://pol.test.monerov.online/)
+- GUI Wallet Downloads: [github.com/xmvdev/monerov-gui/releases](https://github.com/xmvdev/monerov-gui/releases)
 
 ## Social/Contact
 
