@@ -22,15 +22,16 @@ Monerov is based on [Monero](README_original.md)
 ## Specifications & Emission
 
 - Coin ticker: XMV
-- Total supply: 18,400,000 coins before tail emission
+- Total supply: 27,000,000 coins before tail emission
 - Tail emission: ~158,000 coins each year (starting at year 8)
-- Decimal places: 12
-- PoW hash algorithm: CryptoNightV7
+- Decimal places: 11
+- PoW hash algorithm: RandomV
 - Block time: 60 seconds
 - Difficulty Adjustment Algorithm: Monero DAA
-- Premine: 5,000,000 (to be distributed to monerov v1 holders)
-- Mainnet default P2P port: 19250
-- Mainnet default RPC port: 19251
+- Premine: 5,300,000 (to be distributed to monerov v1 holders)
+- Devmine: 2,700,000 (locked for 2 years)
+- Mainnet default P2P port: 19280
+- Mainnet default RPC port: 19281
 
 ## Build on linux
 
