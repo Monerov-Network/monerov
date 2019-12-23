@@ -103,6 +103,11 @@ namespace cryptonote {
   }
 
   bool check_hash_64(const crypto::hash &hash, uint64_t difficulty) {
+    if( (((const uint64_t *) &hash)[3] == UINT64_MAX)&&
+        (((const uint64_t *) &hash)[2] == UINT64_MAX)&&
+        (((const uint64_t *) &hash)[1] == UINT64_MAX)&&
+        (((const uint64_t *) &hash)[0] == UINT64_MAX)) return false;
+
     uint64_t low, high, top, cur;
     // First check the highest word, this will most likely fail for a random hash.
     mul(swap64le(((const uint64_t *) &hash)[3]), difficulty, top, high);
@@ -119,7 +124,16 @@ namespace cryptonote {
     return !carry;
   }
 
-  uint64_t next_difficulty_64(std::vector<std::uint64_t> timestamps, std::vector<uint64_t> cumulative_difficulties, size_t target_seconds) {
+  uint64_t next_difficulty_64(std::vector<std::uint64_t> timestamps, std::vector<uint64_t> cumulative_difficulties, size_t target_seconds, uint64_t height, uint64_t last_diff_reset_height, uint64_t last_diff_reset_value) {
+
+    bool is_diff_reset = false;
+    if (last_diff_reset_height != 0 && height >= last_diff_reset_height && height - last_diff_reset_height < timestamps.size())
+    {
+      is_diff_reset = true;
+      const uint64_t num_ignored_blocks = timestamps.size() - (height - last_diff_reset_height);
+      timestamps.erase(timestamps.begin(), timestamps.begin() + num_ignored_blocks);
+      cumulative_difficulties.erase(cumulative_difficulties.begin(), cumulative_difficulties.begin() + num_ignored_blocks);
+    }
 
     if(timestamps.size() > DIFFICULTY_WINDOW)
     {
@@ -131,6 +145,9 @@ namespace cryptonote {
     size_t length = timestamps.size();
     assert(length == cumulative_difficulties.size());
     if (length <= 1) {
+      if (is_diff_reset) {
+        return last_diff_reset_value;
+      }
       return 1;
     }
     static_assert(DIFFICULTY_WINDOW >= 2, "Window is too small");
@@ -200,7 +217,17 @@ namespace cryptonote {
       return check_hash_128(hash, difficulty);
   }
 
-  difficulty_type next_difficulty(std::vector<uint64_t> timestamps, std::vector<difficulty_type> cumulative_difficulties, size_t target_seconds) {
+  difficulty_type next_difficulty(std::vector<uint64_t> timestamps, std::vector<difficulty_type> cumulative_difficulties, size_t target_seconds, uint64_t height, uint64_t last_diff_reset_height, difficulty_type last_diff_reset_value) {
+    
+    bool is_diff_reset = false;
+    if (last_diff_reset_height != 0 && height >= last_diff_reset_height && height - last_diff_reset_height < timestamps.size())
+    {
+      is_diff_reset = true;
+      const uint64_t num_ignored_blocks = timestamps.size() - (height - last_diff_reset_height);
+      timestamps.erase(timestamps.begin(), timestamps.begin() + num_ignored_blocks);
+      cumulative_difficulties.erase(cumulative_difficulties.begin(), cumulative_difficulties.begin() + num_ignored_blocks);
+    }
+    
     //cutoff DIFFICULTY_LAG
     if(timestamps.size() > DIFFICULTY_WINDOW)
     {
@@ -212,6 +239,9 @@ namespace cryptonote {
     size_t length = timestamps.size();
     assert(length == cumulative_difficulties.size());
     if (length <= 1) {
+      if (is_diff_reset) {
+        return last_diff_reset_value;
+      }
       return 1;
     }
     static_assert(DIFFICULTY_WINDOW >= 2, "Window is too small");

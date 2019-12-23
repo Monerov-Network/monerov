@@ -42,6 +42,7 @@ using namespace epee;
 #include "cryptonote_basic/tx_extra.h"
 #include "crypto/crypto.h"
 #include "crypto/hash.h"
+#include "crypto/cuckarood/cuckarood29v.h"
 #include "ringct/rctSigs.h"
 #include "multisig/multisig.h"
 
@@ -679,7 +680,14 @@ namespace cryptonote
   bool get_block_longhash(const Blockchain *pbc, const block& b, crypto::hash& res, const uint64_t height, const int miners)
   {
     blobdata bd = get_block_hashing_blob(b);
-    if (b.major_version >= RX_BLOCK_VERSION)
+    if (b.major_version >= HF_VERSION_CUCKOO) {
+        uint32_t edges[32];
+        for(int i = 0; i < 32; i++) edges[i] = b.cycle.data[i];
+
+		Cuckarood29V* cu = new Cuckarood29V();
+        cu->hash(bd.data(), bd.size(), b.nonce, edges, res.data);
+    }
+    else if (b.major_version >= RX_BLOCK_VERSION)
     {
       uint64_t seed_height, main_height;
       crypto::hash hash;

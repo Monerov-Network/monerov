@@ -570,6 +570,12 @@ namespace cryptonote
         continue;
       }
 
+      if (b.major_version >= HF_VERSION_CUCKOO)
+      {
+        miner::send_stop_signal();
+        continue;
+      }
+
       b.nonce = nonce;
       crypto::hash h;
       m_gbh(b, height, tools::get_max_concurrency(), h);

@@ -27,6 +27,8 @@
 # THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 set(crypto_sources
+  cuckarood/cuckarood29v.cpp
+  cuckarood/blake2b-ref.c
   aesb.c
   blake256.c
   chacha.c
@@ -59,6 +61,11 @@ include_directories(${RANDOMX_INCLUDE})
 set(crypto_headers)
 
 set(crypto_private_headers
+  cuckarood/cuckarood29v.h
+  cuckarood/blake2.h
+  cuckarood/blake2-impl.h
+  cuckarood/int-util.h
+  cuckarood/portable_endian.h
   blake256.h
   chacha.h
   crypto-ops.h
