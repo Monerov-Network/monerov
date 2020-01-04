@@ -599,20 +599,20 @@ namespace nodetool
     std::set<std::string> full_addrs;
     if (nettype == cryptonote::TESTNET)
     {
-      full_addrs.insert("94.23.159.182:29280");
+      full_addrs.insert("192.155.82.50:29280");
     }
     else if (nettype == cryptonote::STAGENET)
     {
-      full_addrs.insert("94.23.159.182:39280");
+      full_addrs.insert("192.155.82.50:39280");
     }
     else if (nettype == cryptonote::FAKECHAIN)
     {
     }
     else
     {
-      full_addrs.insert("94.23.159.182:19280");
       full_addrs.insert("192.155.82.50:19280");
       full_addrs.insert("176.58.102.113:19280");
+      full_addrs.insert("172.105.126.220:19280");
     }
     return full_addrs;
   }
