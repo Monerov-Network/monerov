@@ -1595,7 +1595,9 @@ namespace cryptonote
       return false;
     }
 
-    if (b.major_version >= RX_BLOCK_VERSION)
+    if (b.major_version >= HF_VERSION_CUCKOO) {
+    }
+    else if (b.major_version >= RX_BLOCK_VERSION)
     {
       uint64_t next_height;
       crypto::rx_seedheights(height, &seed_height, &next_height);
@@ -1710,7 +1712,9 @@ namespace cryptonote
     crypto::hash seed_hash, next_seed_hash;
     if (!get_block_template(info.address, req.prev_block.empty() ? NULL : &prev_block, blob_reserve, reserved_offset, wdiff, res.height, res.expected_reward, b, res.seed_height, seed_hash, next_seed_hash, error_resp))
       return false;
-    if (b.major_version >= RX_BLOCK_VERSION)
+    if (b.major_version >= HF_VERSION_CUCKOO) {
+    }
+    else if (b.major_version >= RX_BLOCK_VERSION)
     {
       res.seed_hash = string_tools::pod_to_hex(seed_hash);
       if (seed_hash != next_seed_hash)
@@ -2992,7 +2996,9 @@ namespace cryptonote
     }
     res.hashing_blob = epee::string_tools::buff_to_hex_nodelimer(hashing_blob);
     res.top_hash = epee::string_tools::pod_to_hex(top_hash);
-    if (hashing_blob[0] >= RX_BLOCK_VERSION)
+    if (hashing_blob[0] >= HF_VERSION_CUCKOO) {
+    }
+    else if (hashing_blob[0] >= RX_BLOCK_VERSION)
     {
       res.seed_hash = string_tools::pod_to_hex(seed_hash);
       if (seed_hash != next_seed_hash)
