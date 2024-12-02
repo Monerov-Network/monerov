@@ -5,7 +5,7 @@ Monerov is based on [Monero](README_original.md)
 
 ## Resources
 
-- Webpage: [monerov.online](http://monerov.online)
+- Webpage: [monerov.network](http://monerov.network)
 - Explorer Mainnet: [explorer.monerov.online](https://explorer.monerov.online/)
 - Explorer Testnet: [explorer.test.monerov.online](https://explorer.test.monerov.online/)
 - Official Pool Mainnet: [pool.monerov.online](https://pool.monerov.online/)
