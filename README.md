@@ -1,11 +1,11 @@
 # Monerov
 
-Monerov is based on [Monero](README_original.md)  
+Monerov is based on [xmvdev](README_original.md)  
 
 
 ## Resources
 
-- Webpage: [monerov.network](http://monerov.network)
+- Webpage: [monerov.online](https://monerov.online)
 - Explorer Mainnet: [explorer.monerov.online](https://explorer.monerov.online/)
 - Explorer Testnet: [explorer.test.monerov.online](https://explorer.test.monerov.online/)
 - Official Pool Mainnet: [pool.monerov.online](https://pool.monerov.online/)
@@ -14,10 +14,10 @@ Monerov is based on [Monero](README_original.md)
 
 ## Social/Contact
 
-- Telegram: 
-- Discord: 
-- Twitter: [twitter.com/monerovofficial](https://twitter.com/monerovofficial)
-- Email: xmvdev@gmail.com
+- Telegram: @MonerovNetwork
+- Discord: https://discord.gg/yY9bapXZ
+- Twitter: [twitter.com/monerovNet](https://twitter.com/monerovNet)
+- Email: Team@monerov.Online
 
 ## Specifications & Emission
 
