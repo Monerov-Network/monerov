@@ -41,7 +41,7 @@ install deps:
 
 clone repo:
 
-`git clone --recursive https://github.com/xmvdev/monerov`
+`git clone --recursive https://github.com/Monerov-Network/monerov`
 
 build daemon and wallet:
 
@@ -59,7 +59,7 @@ install deps:
 
 clone repo:
 
-`git clone --recursive https://github.com/xmvdev/monerov`
+`git clone --recursive https://github.com/Monerov-Network/monerov`
 
 build daemon and wallet:
 
